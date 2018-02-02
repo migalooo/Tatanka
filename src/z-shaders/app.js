@@ -2,7 +2,7 @@ import '../assets/reset.css'
 import '../assets/app.css'
 import {createGL, createShader, createProgram} from '../tools/createGLCanvas.js'
 import vertexShaderSource from './vertexShader.glsl'
-import fragmentShaderSource from './fragmentShader-line2.glsl'
+import fragmentShaderSource from './fragmentShader-colorHBS.glsl'
 
 const gl = createGL('#board')
 const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
@@ -41,11 +41,11 @@ gl.uniform2f(u_side, side, side)
 gl.enableVertexAttribArray(a_position)
 gl.vertexAttribPointer(a_position, 2, gl.FLOAT, false, 0, 0)
 
+let time = 0
 function render() {
-  const date = new Date()
-  // gl.uniform1f(u_time, (date.getSeconds()-30)/60)
-  gl.uniform1f(u_time, Math.random())
+  gl.uniform1f(u_time, time += 0.05)
   gl.drawArrays(gl.TRIANGLES, 0, 6)
+  requestAnimationFrame( render )
 }
 
 render()
