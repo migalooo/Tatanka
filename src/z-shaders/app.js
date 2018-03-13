@@ -2,7 +2,13 @@ import '../assets/reset.css'
 import '../assets/app.css'
 import {createGL, createShader, createProgram} from '../tools/createGLCanvas.js'
 import vertexShaderSource from './vertexShader.glsl'
-import fragmentShaderSource from './fragmentShader-colorHBS.glsl'
+import fragmentShaderSource from './fragmentShader-circle-distance.glsl'
+
+console.log('%c  Vertex Shader ▼  ','background:#f9f9f9;color:#20b1ec')
+console.log(vertexShaderSource)
+console.log('%c  Fragment Shader ▼  ','background:#f9f9f9;color:#20b1ec')
+console.log(fragmentShaderSource)
+console.log('%c  ▲  ','background:#f9f9f9;color:#20b1ec')
 
 const gl = createGL('#board')
 const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)

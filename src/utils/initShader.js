@@ -1,4 +1,4 @@
-function createGL(el) {
+function createContext(el) {
   const warp = document.querySelector(el)
   const canvas = document.createElement('canvas')
   canvas.width = warp.clientWidth
@@ -52,7 +52,7 @@ function createProgram(gl, vertexShader, fragmentShader) {
 }
 
 export {
-  createGL,
   createShader,
+  createContext,
   createProgram
 }
