@@ -5,4 +5,6 @@ module.exports = {
   // entry: './src/z-mask/app.js',
   // entry: './src/z-shaders/app.js',
   entry: './src/z-fo/app.js',
+
+  template: 'src/z-fo/index.ejs'
 }
