@@ -1,9 +1,10 @@
-import '../assets/reset.css'
-import '../assets/app.css'
-import {createGL, createShader, createProgram} from '../tools/createGLCanvas.js'
+import '>/assets/reset.css'
+import '>/assets/app.css'
+import {createGL, createShader, createProgram} from '>/tools/createGLCanvas.js'
+import {loadImage} from '>/tools/loadImage.js'
+
 import vertexShaderSource from './vertexShader.glsl'
 import fragmentShaderSource from './fragmentShader.glsl'
-import {loadImage} from './util.js'
 
 function setRectangle(gl, x, y, width, height) {
   const x1 = x
@@ -116,7 +117,7 @@ function render(image) {
   gl.drawArrays(primitiveType, offset, count)
 }
 
-loadImage('./images/image.jpg')
+loadImage('/image.jpg')
   .then(function(image){
     render(image)
   })
