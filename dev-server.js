@@ -65,17 +65,27 @@ const config = {
       template: path.resolve(__dirname, `src/gallary/${folder}/main.html`)
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ]
+}
+
+try {
+  fs.statSync(path.resolve(__dirname, `src/gallary/${folder}/static`))
+  config.plugins.push(
     new CopyWebpackPlugin([{
         from: path.resolve(__dirname, `src/gallary/${folder}/static`),
         ignore: ['.*']
     }])
-  ]
+  )
+  console.log(`static-file-serve: static folder copy from src/gallary/${folder}/static folder.`)
+} catch (err) {
+  console.log('static-file-serve: have no static folder.')
 }
 
 const options = {
   contentBase: './dist',
   hot: true,
+  stats: "errors-only",
   host: 'localhost'
 }
 
@@ -85,4 +95,5 @@ const server = new webpackDevServer(compiler, options)
 
 server.listen(5100, 'localhost', () => {
   console.log(chalk.blue('Your dev-server listening on port 5100'))
+  console.log(`The compiler folder is ${chalk.blue('src/gallary/'+folder)}`)
 })

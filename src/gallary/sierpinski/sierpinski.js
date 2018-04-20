@@ -1,4 +1,4 @@
-import {vec2, mix, flatten} from './utils/MV.js'
+import {vec2, mix, flatten} from './tools/MV.js'
 import initShader from './initShader.js'
 import vertexShaderSource from './vertexShader.glsl'
 import fragmentShaderSource from './fragmentShader.glsl'

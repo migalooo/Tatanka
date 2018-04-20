@@ -1,6 +1,6 @@
 import '>/assets/reset.css'
 import '>/assets/app.css'
-import {createGL, createShader, createProgram} from '>/tools/createGLCanvas.js'
+import {createContext, createShader, createProgram} from '>/utils/initShader.js'
 import {loadImage} from '>/tools/loadImage.js'
 
 import vertexShaderSource from './vertexShader.glsl'
@@ -23,7 +23,7 @@ function setRectangle(gl, x, y, width, height) {
 
 function render(image) {
   // Get A WebGL context
-  const gl = createGL('#board')
+  const gl = createContext('#board')
   const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
   const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource)
   // setup GLSL program
