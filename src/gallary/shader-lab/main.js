@@ -1,20 +1,11 @@
-import '../assets/reset.css'
-import '../assets/app.css'
-import {createGL, createShader, createProgram} from '../tools/createGLCanvas.js'
+import '>/assets/reset.css'
+import '>/assets/app.css'
+import {addProgram} from '>/utils/addProgram'
+
 import vertexShaderSource from './vertexShader.glsl'
-import fragmentShaderSource from './fragmentShader-circle-distance.glsl'
+import fragmentShaderSource from './fragmentShader-cricle.glsl'
+const {gl, program} = addProgram('#board', vertexShaderSource, fragmentShaderSource, true)
 
-console.log('%c  Vertex Shader ▼  ','background:#f9f9f9;color:#20b1ec')
-console.log(vertexShaderSource)
-console.log('%c  Fragment Shader ▼  ','background:#f9f9f9;color:#20b1ec')
-console.log(fragmentShaderSource)
-console.log('%c  ▲  ','background:#f9f9f9;color:#20b1ec')
-
-const gl = createGL('#board')
-const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
-const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource)
-const program = createProgram(gl, vertexShader, fragmentShader)
-gl.useProgram(program)
 gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
 gl.clear(gl.COLOR_BUFFER_BIT)
 gl.clearColor(255, 0, 0, 0)

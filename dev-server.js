@@ -85,7 +85,7 @@ try {
 const options = {
   contentBase: './dist',
   hot: true,
-  stats: "errors-only",
+  // stats: "errors-only",
   host: 'localhost'
 }
 

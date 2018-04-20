@@ -183,7 +183,7 @@ async-each@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/async-each/download/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
-async@^1.5.2:
+async@^1.4.2, async@^1.5.2:
   version "1.5.2"
   resolved "http://registry.npm.taobao.org/async/download/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
@@ -868,6 +868,12 @@ css-selector-tokenizer@^0.7.0:
 css-what@2.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd"
+
+cssauron@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/cssauron/-/cssauron-1.4.0.tgz#a6602dff7e04a8306dc0db9a551e92e8b5662ad8"
+  dependencies:
+    through X.X.X
 
 cssesc@^0.1.0:
   version "0.1.0"
@@ -1615,6 +1621,13 @@ globby@^7.1.1:
     ignore "^3.3.5"
     pify "^3.0.0"
     slash "^1.0.0"
+
+glsl-man@^1.1.14:
+  version "1.1.14"
+  resolved "https://registry.yarnpkg.com/glsl-man/-/glsl-man-1.1.14.tgz#14acf7969d3cd9113cbff291ea1991a469022630"
+  dependencies:
+    cssauron "^1.4.0"
+    tree-traversal "^1.1.1"
 
 glsl-shader-loader@^0.0.4:
   version "0.0.4"
@@ -4025,6 +4038,10 @@ through2@^2.0.0:
     readable-stream "^2.1.5"
     xtend "~4.0.1"
 
+through@X.X.X:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
 thunky@^0.1.0:
   version "0.1.0"
   resolved "http://registry.npm.taobao.org/thunky/download/thunky-0.1.0.tgz#bf30146824e2b6e67b0f2d7a4ac8beb26908684e"
@@ -4070,6 +4087,12 @@ tough-cookie@~2.3.0:
   resolved "http://registry.npm.taobao.org/tough-cookie/download/tough-cookie-2.3.3.tgz#0b618a5565b6dea90bf3425d04d55edc475a7561"
   dependencies:
     punycode "^1.4.1"
+
+tree-traversal@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/tree-traversal/-/tree-traversal-1.1.1.tgz#71483b3cbe01c5c3214f5a58383baaa0cf1dccbe"
+  dependencies:
+    async "^1.4.2"
 
 trim-newlines@^1.0.0:
   version "1.0.0"

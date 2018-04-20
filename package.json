@@ -15,5 +15,8 @@
   "scripts": {
     "start": "node ./dev-server.js ",
     "dev": "node ./dev-server.js "
+  },
+  "dependencies": {
+    "glsl-man": "^1.1.14"
   }
 }

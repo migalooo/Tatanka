@@ -20,7 +20,6 @@ function addProgram(el, vertexShaderSource, fragmentShaderSource, logSource = fa
     gl,
     program
   }
-
 }
 
 export {
