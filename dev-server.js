@@ -9,6 +9,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 // Receive compiler folder name
 const [folder] = process.argv.splice(2)
+
+if (!folder) {
+  console.log('Warning: ' + chalk.yellow('Please input your compile folder after command.'))
+  process.exit(0)
+}
+
 try {
   fs.statSync(path.resolve(__dirname, `src/gallary/${folder}`))
 } catch (err) {

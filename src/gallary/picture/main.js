@@ -1,7 +1,7 @@
 import '>/assets/reset.css'
 import '>/assets/app.css'
 import {createContext, createShader, createProgram} from '>/utils/initShader.js'
-import {loadImage} from '>/tools/loadImage.js'
+import {loadImage} from '>/utils/loadImage.promise.js'
 
 import vertexShaderSource from './vertexShader.glsl'
 import fragmentShaderSource from './fragmentShader.glsl'
