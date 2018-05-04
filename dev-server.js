@@ -33,7 +33,7 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.js', '.glsl', '.json'],
+    extensions: ['.js', '.json'],
     alias: {
       '>': path.resolve('src')
     }
@@ -42,7 +42,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.glsl$/,
+        test: /\.(glsl|vert|frag)$/,
         use: {
           loader: 'glsl-shader-loader',
         }

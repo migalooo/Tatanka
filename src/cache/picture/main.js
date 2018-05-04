@@ -1,10 +1,10 @@
 import '>/assets/reset.css'
 import '>/assets/app.css'
-import {createContext, createShader, createProgram} from '>/tools/initShader.js'
-import {loadImage} from '>/tools/loadImage.promise.js'
+import {createContext, createShader, createProgram} from '>/utils/initShader.js'
+import {loadImage} from '>/utils/loadImage.promise.js'
 
-import vertexShaderSource from './shader.vert'
-import fragmentShaderSource from './shader.frag'
+import vertexShaderSource from './vertexShader.glsl'
+import fragmentShaderSource from './fragmentShader.glsl'
 
 function setRectangle(gl, x, y, width, height) {
   const x1 = x
