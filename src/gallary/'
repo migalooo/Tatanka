@@ -1,5 +1,0 @@
-multiplyByTwo(inout float value)
-            {
-            value *= 2;
-            }
-

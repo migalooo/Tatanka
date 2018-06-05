@@ -45,6 +45,9 @@ const config = {
         test: /\.(glsl|vert|frag)$/,
         use: {
           loader: 'glsl-shader-loader',
+          options: {
+            root: '/src/shaders'
+          }
         }
       },
       {
