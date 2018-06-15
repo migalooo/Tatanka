@@ -1,3 +1,5 @@
+"use strict";
+
 function main() {
   // Get A WebGL context
   /** @type {HTMLCanvasElement} */
@@ -6,6 +8,12 @@ function main() {
   if (!gl) {
     return;
   }
+
+  console.log( gl["uniform1f"])
+
+	
+  console.log(gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS))
+  console.log(gl.getParameter(gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS))
 
   var createFlattenedVertices = function(gl, vertices) {
     return webglUtils.createBufferInfoFromArrays(
@@ -71,8 +79,6 @@ function main() {
     },
   ];
 
-  console.log(objectsToDraw)
-
   function computeMatrix(viewProjectionMatrix, translation, xRotation, yRotation) {
     var matrix = m4.translate(viewProjectionMatrix,
         translation[0],
@@ -118,7 +124,7 @@ function main() {
     var sphereXRotation =  time;
     var sphereYRotation =  time;
     var cubeXRotation   = -time;
-    var cubeYRotation   =  -time;
+    var cubeYRotation   =  time;
     var coneXRotation   =  time;
     var coneYRotation   = -time;
 
@@ -147,7 +153,7 @@ function main() {
       var programInfo = object.programInfo;
       var bufferInfo = object.bufferInfo;
 
-      gl.useProgram(programInfo.program)
+      gl.useProgram(programInfo.program);
 
       // Setup all the needed attributes.
       webglUtils.setBuffersAndAttributes(gl, programInfo, bufferInfo);
@@ -163,4 +169,5 @@ function main() {
   }
 }
 
-main()
+main();
+

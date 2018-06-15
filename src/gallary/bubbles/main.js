@@ -36,9 +36,9 @@ function main() {
   var cameraHeight = 50;
 
   var uniformsThatAreTheSameForAllObjects = {
-    u_lightWorldPos:         [-50, 30, 100],
-    u_viewInverse:           m4.identity(),
-    u_lightColor:            [1, 1, 1, 1],
+    u_lightWorldPos: [-50, 30, 100],
+    u_viewInverse:   m4.identity(),
+    u_lightColor:    [1, 1, 1, 1],
   };
 
   var uniformsThatAreComputedForEachObject = {
@@ -60,9 +60,9 @@ function main() {
   };
 
   var textures = [
-    textureUtils.makeStripeTexture(gl, { color1: "#FFF", color2: "#CCC", }),
+    textureUtils.makeStripeTexture(gl,  { color1: "#FFF", color2: "#CCC", }),
     textureUtils.makeCheckerTexture(gl, { color1: "#FFF", color2: "#CCC", }),
-    textureUtils.makeCircleTexture(gl, { color1: "#FFF", color2: "#CCC", }),
+    textureUtils.makeCircleTexture(gl,  { color1: "#FFF", color2: "#CCC", }),
   ];
 
   var objects = [];
@@ -74,11 +74,11 @@ function main() {
       xRotation: rand(Math.PI * 2),
       yRotation: rand(Math.PI),
       materialUniforms: {
-        u_colorMult:             chroma.hsv(rand(baseColor, baseColor + 120), 0.5, 1).gl(),
-        u_diffuse:               textures[randInt(textures.length)],
-        u_specular:              [1, 1, 1, 1],
-        u_shininess:             rand(500),
-        u_specularFactor:        rand(1),
+             u_colorMult: chroma.hsv(rand(baseColor, baseColor + 120), 0.5, 1).gl(),
+               u_diffuse: textures[randInt(textures.length)],
+              u_specular: [1, 1, 1, 1],
+             u_shininess: rand(500),
+        u_specularFactor: rand(1),
       },
     });
   }
@@ -103,7 +103,7 @@ function main() {
     // Compute the projection matrix
     var aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     var projectionMatrix =
-        m4.perspective(fieldOfViewRadians, aspect, 1, 2000);
+      m4.perspective(fieldOfViewRadians, aspect, 1, 2000);
 
     // Compute the camera's matrix using look at.
     var cameraPosition = [0, 0, 100];
