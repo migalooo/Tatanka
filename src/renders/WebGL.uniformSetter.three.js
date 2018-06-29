@@ -690,6 +690,7 @@ PureArrayUniform.prototype.updateCache = function ( data ) {
 
 };
 
+// 含有id this.seq this.map 的构造函数
 function StructuredUniform( id ) { 
 	this.id = id;
 
@@ -697,6 +698,7 @@ function StructuredUniform( id ) {
 
 }
 
+// 调用全部seq中的 setValue
 StructuredUniform.prototype.setValue = function ( gl, value ) {
 
 	// Note: Don't need an extra 'renderer' parameter, since samplers
@@ -740,6 +742,8 @@ function addUniform( container, uniformObject ) {
 
 function parseUniform( activeInfo, addr, container ) {
 
+  // path 的值 例子 u_colorMult 为定义在 shader中的绑定变量名称
+  //
 	var path = activeInfo.name,
 		pathLength = path.length;
 
@@ -792,10 +796,12 @@ function parseUniform( activeInfo, addr, container ) {
 
 function WebGLUniforms( gl, program, renderer ) {
 
+  // 提供seq map
 	UniformContainer.call( this );
 
 	this.renderer = renderer;
 
+  // 查找program 开启的uniforms
 	var n = gl.getProgramParameter( program, gl.ACTIVE_UNIFORMS );
 
 	for ( var i = 0; i < n; ++ i ) {
@@ -803,6 +809,7 @@ function WebGLUniforms( gl, program, renderer ) {
 		var info = gl.getActiveUniform( program, i ),
 			addr = gl.getUniformLocation( program, info.name );
 
+    // 每个开启的 uniform 初始化绑定 function
 		parseUniform( info, addr, this );
 
 	}

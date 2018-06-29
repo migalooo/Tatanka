@@ -8,11 +8,6 @@ const mat4Float32Array = new Float32Array(16)
 const mat3Float32Array = new Float32Array(9)
 const mat2Float32Array = new Float32Array(4)
 
-function UniformContainer() {
-	this.seq = []
-	this.map = {}
-}
-
 /**
  * -- Uniform Setters --
  */
@@ -205,62 +200,25 @@ function getSingularSetter( type ) {
 	}
 }
 
-function SingleUniform( id, activeInfo, addr ) {
-	this.id = id
+function SingleUniform( nameId, activeInfo, addr ) {
+	this.id = nameId
 	this.addr = addr
 	this.cache = []
 	this.setValue = getSingularSetter(activeInfo.type)
 }
 
-function parseUniform( activeInfo, addr, container ) {
-	const path = activeInfo.name, pathLength = path.length
 
-	RePathPart.lastIndex = 0;
+function parseUniform(activeInfo, addr, container) {
+	let activeName = activeInfo.name
+  let isArray = false
 
-	while ( true ) {
+  if (activeName.substr(-3) === "[0]") {
+    if (uniformInfo.size > 1) isArray = true
+    activeName = activeName.substr(0, name.length - 3)
+  }
 
-		var match = RePathPart.exec( path ),
-			matchEnd = RePathPart.lastIndex,
-
-			id = match[ 1 ],
-			idIsIndex = match[ 2 ] === ']',
-			subscript = match[ 3 ];
-
-		if ( idIsIndex ) id = id | 0; // convert to integer
-
-		if ( subscript === undefined || subscript === '[' && matchEnd + 2 === pathLength ) {
-
-			// bare name or "pure" bottom-level array "[0]" suffix
-
-			addUniform( container, subscript === undefined ?
-				new SingleUniform( id, activeInfo, addr ) :
-				new PureArrayUniform( id, activeInfo, addr ) );
-
-			break;
-
-		} else {
-			// step into inner node / create it in case it doesn't exist
-
-			var map = container.map, next = map[ id ];
-
-			if ( next === undefined ) {
-				next = new StructuredUniform( id );
-				addUniform( container, next );
-			}
-			container = next;
-		}
-	}
+  const uniformSetter = isArray ? new SingleUniform(nameId, activeInfo, addr) : new ArrayUniform( nameId, activeInfo, addr)
+	container.seq.push(uniformSetter)
+	container.map[uniformSetter.id] = uniformSetter
 }
 
-function WebGLUniforms(gl, program) {
-	// UniformContainer.call( this )
-	// this.renderer = renderer
-	const count = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS)
-
-	for (var index=0; index<count; index++) {
-		const activeInfo = gl.getActiveUniform(program, index)
-    const addr = gl.getUniformLocation(program, info.name)
-
-		parseUniform(activeInfo, addr)
-	}
-}
