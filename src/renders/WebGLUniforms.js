@@ -1,3 +1,4 @@
+import {SingleUniform, ArrayUniform} from './WebGLUniforms.creater.js'
 /**
  * Constructor Function for shader program uniform bind
  */
@@ -9,8 +10,8 @@ class WebGLUniforms {
 
     const count = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS)
 
-    for (var index=0; index<count; index++) {
-      const activeInfo = gl.getActiveUniform(program, index)
+    for (var i=0; i<count; i++) {
+      const activeInfo = gl.getActiveUniform(program, i)
       const addr = gl.getUniformLocation(program, info.name)
 
       parseUniform(activeInfo, addr, this)
@@ -41,7 +42,7 @@ function parseUniform(activeInfo, addr, container) {
   const uniformSetter = isArray ? new SingleUniform(nameId, activeInfo, addr) : new ArrayUniform(nameId, activeInfo, addr)
 
 	container.seq.push(uniformSetter)
-	container.map[uniformSetter.id] = uniformSetter
+	container.map[uniformSetter.nameId] = uniformSetter
 }
 
 export default WebGLUniforms

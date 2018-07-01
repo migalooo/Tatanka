@@ -1,16 +1,12 @@
-import {isEqualArray, copyArray, layoutToArray} from './setUniform.js'
+import {arraysEqual, copyArray, layoutToArray} from './utils.js'
 
 /**
  * -- Caches --
  * Float32Array caches used for uploading Matrix uniforms
  */
-const emptyTexture = new Texture()
-const emptyCubeTexture = new CubeTexture()
-
 const mat4Float32Array = new Float32Array(16)
 const mat3Float32Array = new Float32Array(9)
 const mat2Float32Array = new Float32Array(4)
-
 
 /**
  * -- Uniform Setters --
@@ -127,7 +123,7 @@ function setUniform4fm(gl, v) {
 }
 
 // Single texture (2D/Cube)
-function setUniformTexture2D( gl, v, renderer ) {
+function setUniformTexture2D(gl, v, renderer) {
 	const cache = this.cache
 	const unit = renderer.allocTextureUnit()
 
@@ -179,8 +175,8 @@ function setUniform4iv( gl, v ) {
 /**
  * Single unifrom setter
  */
-function getSingularSetter( type ) {
-	switch ( type ) {
+function getSingularSetter(type) {
+	switch (type) {
 		case 0x1406: return setUniform1f  // float
 		case 0x8b50: return setUniform2fv // float_vec2
 		case 0x8b51: return setUniform3fv // float_vec3
@@ -205,52 +201,24 @@ function getSingularSetter( type ) {
 	}
 }
 
-// Flattening for arrays of vectors and matrices cache array
-function flatten(matrix, uniformSize, matrixRowSize) {
-	const firstElem = matrix[0]
-	if (firstElem <= 0 || firstElem > 0) return matrix
-  // has cache
-	const n = uniformSize * matrixRowSize
-  const flattenArray = arrayCacheF32[n]
-
-  if (!flattenArray) {
-    flattenArray = new Float32Array(n)
-    arrayCacheF32[n]
-  }
-
-  firstElem.toArray(flattenArray, 0)
-  let i, offset
-  for (i = 1, offset = 0; i !== uniformSize; ++i) {
-    offset += matrixRowSize
-    matrix[i].toArray(flattenArray, offset)
-  }
-	return flattenArray
+function SingleUniform(nameId, activeInfo, addr) {
+	this.nameId = nameId
+	this.addr = addr
+	this.cache = []
+	this.setValue = getSingularSetter(activeInfo.type)
 }
 
-// Array of scalars
-function setUniform1fv(gl, v) {
-	const cache = this.cache
-	if (arraysEqual(cache, v)) return
-
-	gl.uniform1fv(this.addr, v)
-	copyArray( cache, v )
+function ArrayUniform(nameId, activeInfo, addr) {
+	this.nameId = nameId;
+	this.addr = addr;
+	this.cache = [];
+	this.size = activeInfo.size;
+  console.err('Pure Array creater not finish')
+	// this.setValue = getPureArraySetter( activeInfo.type );
+	// this.path = activeInfo.name; // DEBUG
 }
 
-function setUniform1iv(gl, v) {
-	const cache = this.cache
-	if (arraysEqual(cache, v)) return
-
-	gl.uniform1iv(this.addr, v)
-	copyArray( cache, v )
+export {
+  SingleUniform,
+  ArrayUniform
 }
-
-// Array of vectors (flat or from THREE classes)
-function setValueV2a(gl, v) {
-	const cache = this.cache
-	const data = flatten(v, this.size, 2)
-	if (arraysEqual(cache, data)) return
-
-	gl.uniform2fv(this.addr, data)
-	this.updateCache(data)
-}
-

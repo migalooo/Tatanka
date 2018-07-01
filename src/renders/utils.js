@@ -14,7 +14,7 @@ function copyArray(a, b) {
 	}
 }
 
-function layoutObjectToArray(v, type) {
+function layoutToArray(v, type) {
   switch (type) {
     case 'xy':
       return [v.x, v.y]
@@ -27,20 +27,8 @@ function layoutObjectToArray(v, type) {
   }
 }
 
-function mergeObjectToArray(array, v, offset){
-  if (array === undefined) array = []
-  if (offset === undefined) offset = 0
-
-  array[offset] = v.x
-  array[offset+1] = v.y
-  array[offset+2] = v.z
-  array[offset+3] = v.w 
-  return array
-}
-
 export default {
-  isEqualArray,
+  arraysEqual,
   copyArray,
-  layoutObjectToArray,
-  mergeObjectToArray
+  layoutToArray
 }

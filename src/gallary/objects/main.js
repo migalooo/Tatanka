@@ -9,11 +9,6 @@ function main() {
     return;
   }
 
-  console.log( gl["uniform1f"])
-
-	
-  console.log(gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS))
-  console.log(gl.getParameter(gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS))
 
   var createFlattenedVertices = function(gl, vertices) {
     return webglUtils.createBufferInfoFromArrays(
@@ -150,6 +145,7 @@ function main() {
     // ------ Draw the objects --------
 
     objectsToDraw.forEach(function(object) {
+      console.log(object)
       var programInfo = object.programInfo;
       var bufferInfo = object.bufferInfo;
 
@@ -165,7 +161,7 @@ function main() {
       gl.drawArrays(gl.TRIANGLES, 0, bufferInfo.numElements);
     });
 
-    requestAnimationFrame(drawScene);
+    // requestAnimationFrame(drawScene);
   }
 }
 
