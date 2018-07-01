@@ -12,7 +12,7 @@ class WebGLUniforms {
 
     for (var i=0; i<count; i++) {
       const activeInfo = gl.getActiveUniform(program, i)
-      const addr = gl.getUniformLocation(program, info.name)
+      const addr = gl.getUniformLocation(program, activeInfo.name)
 
       parseUniform(activeInfo, addr, this)
     }
@@ -42,7 +42,7 @@ function parseUniform(activeInfo, addr, container) {
   const uniformSetter = isArray ? new SingleUniform(nameId, activeInfo, addr) : new ArrayUniform(nameId, activeInfo, addr)
 
 	container.seq.push(uniformSetter)
-	container.map[uniformSetter.nameId] = uniformSetter
+	container.map[uniformSetter.id] = uniformSetter
 }
 
 export default WebGLUniforms

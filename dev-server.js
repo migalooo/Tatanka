@@ -22,6 +22,10 @@ try {
   process.exit(0)
 }
 
+function resolve() {
+  return path.join(__dirname, '..', ...arguments)
+}
+
 // Add dynamic entry form command
 const config = {
   mode: 'development',
@@ -54,6 +58,11 @@ const config = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
+              {
+          test: /\.js$/,
+          loader: 'babel-loader',
+          include: [resolve('src')]
+        },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [

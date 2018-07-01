@@ -1,7 +1,14 @@
+import UniformSetter from '../../renders/WebGLUniforms.js'
+
+const a = new UniformSetter
 /**
  * Creates setter for all uniforms of shaders from a given program
  */
 function uniformSetters(gl, program) {
+  a.setValue(gl, program)
+  console.log(a)
+  console.log('+++++++')
+
   const setters = {}
   const numUniforms = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS)
   const textureUnit = 0

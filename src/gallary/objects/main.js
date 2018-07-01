@@ -1,4 +1,5 @@
-"use strict";
+import UniformSetter from '../../renders/WebGLUniforms.js'
+
 
 function main() {
   // Get A WebGL context
@@ -30,6 +31,9 @@ function main() {
 
   // setup GLSL program
   var programInfo = webglUtils.createProgramInfo(gl, ["3d-vertex-shader", "3d-fragment-shader"]);
+
+   console.log(programInfo)
+  const a = new UniformSetter(gl, programInfo.program)
 
   function degToRad(d) {
     return d * Math.PI / 180;
@@ -73,6 +77,7 @@ function main() {
       uniforms: coneUniforms,
     },
   ];
+
 
   function computeMatrix(viewProjectionMatrix, translation, xRotation, yRotation) {
     var matrix = m4.translate(viewProjectionMatrix,

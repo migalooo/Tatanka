@@ -1,4 +1,4 @@
-function isEqualArray(a, b) {
+function arraysEqual(a, b) {
   if (a.length !== b.length) return false
   let i
 	for (i=0, len=a.length; i<len; i++) {
@@ -27,7 +27,7 @@ function layoutToArray(v, type) {
   }
 }
 
-export default {
+export {
   arraysEqual,
   copyArray,
   layoutToArray
