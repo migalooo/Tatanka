@@ -1,10 +1,8 @@
 node_modules/
-/dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 .DS_Store
-.*.swp
-.*.swn
-.*.swo
+.sass-cache
+build
+experiments/TextureProj/npm-debug.log
+illum
+*.swp
