@@ -1,5 +1,6 @@
-import '../scss/global.scss';
-import alfrid, { Camera } from 'alfrid';
+import '../scss/global.less';
+import alfrid, { Camera } from '../../../../alfrid/src/alfrid';
+// import alfrid, { Camera } from 'alfrid';
 import SceneApp from './SceneApp';
 import AssetsLoader from 'assets-loader';
 import dat from 'dat-gui';
@@ -16,6 +17,7 @@ if(document.body) {
 	window.addEventListener('DOMContentLoaded', _init);
 }
 
+// console.log('log')
 
 window.getAsset = function(id) {
 	return window.assets.find( (a) => a.id === id).file;

@@ -1,0 +1,70 @@
+{
+  "_from": "alfrid@0.3.5",
+  "_id": "alfrid@0.3.5",
+  "_inBundle": false,
+  "_integrity": "sha1-qnR0+RQwunvV+6/xsZ0PPaP2fKE=",
+  "_location": "/alfrid",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "alfrid@0.3.5",
+    "name": "alfrid",
+    "escapedName": "alfrid",
+    "rawSpec": "0.3.5",
+    "saveSpec": null,
+    "fetchSpec": "0.3.5"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "http://registry.npm.taobao.org/alfrid/download/alfrid-0.3.5.tgz",
+  "_shasum": "aa7474f91430ba7bd5fbaff1b19d0f3da3f67ca1",
+  "_spec": "alfrid@0.3.5",
+  "_where": "/Users/migaloo/Artistan/repositories/Tatanka/experiments/noise3D",
+  "author": {
+    "name": "Yi-Wen Lin"
+  },
+  "bugs": {
+    "url": "https://github.com/yiwenl/Alfrid/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "collada-parser": "^1.0.0",
+    "gl-matrix": "^2.4.0",
+    "parse-dds": "^1.2.1",
+    "scheduling": "^1.2.0"
+  },
+  "deprecated": false,
+  "description": "WebGL 3D toolkit",
+  "devDependencies": {
+    "assets-loader": "^0.5.2",
+    "dat-gui": "^0.5.0",
+    "fs-extra": "^4.0.2",
+    "glslify": "^6.1.0",
+    "glslify-loader": "^1.0.2",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.6",
+    "stats.js": "^0.17.0"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "homepage": "https://github.com/yiwenl/Alfrid#readme",
+  "license": "MIT",
+  "main": "build/alfrid.js",
+  "name": "alfrid",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yiwenl/Alfrid.git"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production webpack --progress --colors",
+    "build:dev": "NODE_ENV=development webpack --progress --colors",
+    "dev": "NODE_ENV=development webpack-dev-server --open",
+    "lint": "npm run lint:fix && eslint -c .eslintrc src/**",
+    "lint:fix": "eslint -c .eslintrc --fix src/**",
+    "start": "npm run dev"
+  },
+  "version": "0.3.5"
+}
