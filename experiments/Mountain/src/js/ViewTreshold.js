@@ -1,14 +1,15 @@
 // ViewTreshold.js
 
 
-import alfrid from './libs/alfrid.js';
+import alfrid from 'alfrid';
 let GL = alfrid.GL;
-var glslify = require("glslify");
+// var glslify = require("glslify");
+import threshold from '../shaders/threshold.frag'
 
 class ViewTreshold extends alfrid.View {
 	
 	constructor() {
-		super(alfrid.ShaderLibs.bigTriangleVert, glslify('../shaders/threshold.frag'));
+		super(alfrid.ShaderLibs.bigTriangleVert, threshold);
 	}
 
 

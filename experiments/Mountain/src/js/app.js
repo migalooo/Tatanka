@@ -1,4 +1,4 @@
-import alfrid from './libs/alfrid.js';
+import alfrid from 'alfrid';
 import SceneApp from './SceneApp';
 import AssetsLoader from 'assets-loader';
 import dat from 'dat-gui';
@@ -64,9 +64,9 @@ function _init() {
 	}).on('error', function(error) {
 		console.error(error);
 	}).on('progress', function(p) {
-		console.log('Progress : ', p);
-		let loader = document.body.querySelector('.Loading-Bar');
-		loader.style.width = (p * 100).toFixed(2) + '%';
+		// console.log('Progress : ', p);
+		// let loader = document.body.querySelector('.Loading-Bar');
+		// loader.style.width = (p * 100).toFixed(2) + '%';
 	}).on('complete', _onImageLoaded)
 	.start();
 

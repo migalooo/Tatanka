@@ -88,6 +88,7 @@ class GLTool {
 		if(!this.canvas) {	this.canvas = ctx.canvas;	}
 		gl = this.gl = ctx;
 
+    console.log('canvasGL',this.gl)
 		this.extensions = {};
 		for(let i = 0; i < ExtensionsList.length; i++) {
 			this.extensions[ExtensionsList[i]] = gl.getExtension(ExtensionsList[i]);

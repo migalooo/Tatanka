@@ -1,6 +1,6 @@
 // ViewRender.js
 
-import alfrid from './libs/alfrid.js';
+import alfrid from 'alfrid';
 
 let glslify = require("glslify");
 

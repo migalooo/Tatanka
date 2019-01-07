@@ -1,5 +1,3 @@
-// basic.vert
-
 #define SHADER_NAME BASIC_VERTEX
 
 precision highp float;

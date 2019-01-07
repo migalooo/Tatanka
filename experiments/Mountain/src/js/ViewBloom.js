@@ -1,13 +1,14 @@
 // ViewBloom.js
 
-import alfrid from './libs/alfrid.js';
+import alfrid from 'alfrid';
 let GL = alfrid.GL;
-var glslify = require("glslify");
+// var glslify = require("glslify");
+import bloom from '../shaders/bloom.frag'
 
 class ViewBloom extends alfrid.View {
 	
 	constructor() {
-		super(alfrid.ShaderLibs.bigTriangleVert, glslify('../shaders/bloom.frag'));
+		super(alfrid.ShaderLibs.bigTriangleVert, bloom);
 	}
 
 

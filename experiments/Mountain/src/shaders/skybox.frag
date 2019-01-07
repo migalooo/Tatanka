@@ -1,5 +1,3 @@
-// basic.frag
-
 #define SHADER_NAME BASIC_FRAGMENT
 
 precision highp float;

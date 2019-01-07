@@ -3,8 +3,8 @@
 import alfrid, { GL } from 'alfrid';
 import Assets from './Assets';
 
-import vs from 'shaders/pointerInstance.vert';
-import fs from 'shaders/pointers.frag';
+import vs from '../shaders/pointerInstance.vert';
+import fs from '../shaders/pointers.frag';
 
 let hasInstancing;
 

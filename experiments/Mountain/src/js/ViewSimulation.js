@@ -1,6 +1,6 @@
 // ViewSimulation.js
 
-import alfrid from './libs/alfrid.js';
+import alfrid from 'alfrid';
 
 var glslify = require("glslify");
 

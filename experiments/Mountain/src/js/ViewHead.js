@@ -1,6 +1,6 @@
 // ViewHead.js
 
-import alfrid from './libs/alfrid.js';
+import alfrid from 'alfrid';
 let GL = alfrid.GL;
 var glslify = require("glslify");
 

@@ -49,8 +49,9 @@ function _onImageLoaded(o) {
 	//	ASSETS
 	console.log('Image Loaded : ', o);
 	window.assets = o;
-	const loader = document.body.querySelector('.Loading-Bar');
-	loader.style.width = '100%';
+	// const loader = document.body.querySelector('.Loading-Bar');
+  // console.log(loader)
+	// loader.style.width = '100%';
 
 	_init3D();
 

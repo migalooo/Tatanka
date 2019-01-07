@@ -1,5 +1,5 @@
 // SceneApp.js
-import alfrid 			from './libs/alfrid.js';
+import alfrid 			from 'alfrid';
 // import ViewHead 		from './ViewHead';
 import ViewMountain 	from './ViewMountain';
 import ViewSkybox 		from './ViewSkybox';

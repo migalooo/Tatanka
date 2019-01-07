@@ -1,92 +1,38 @@
-/* eslint comma-dangle: 0 */
-const webpack           = require('webpack');
-const path              = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const prod              = process.env.NODE_ENV === 'production';
-const isDevelopment     = process.env.NODE_ENV === 'development';
-const ip                = require('ip');
-const serverIp          = ip.address();
-
-function getOutput() {
-
-	if(prod) {
-		return path.resolve(__dirname, "dist/assets/" )  
-	} else {
-		return path.resolve(__dirname, "dist/assets/" )  
-	}
-	
-}
+const webpack = require('webpack');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-	hotPort: 8082,
-	cache: isDevelopment,
-	debug: isDevelopment,
-	entry: {
-		app: ['./src/js/app.js']
-	},
-	stats: {
-		cached: false,
-		cachedAssets: false,
-		chunkModules: false,
-		chunks: false,
-		colors: true,
-		errorDetails: true,
-		hash: false,
-		progress: true,
-		reasons: false,
-		timings: true,
-		version: false
-	},
-	output: {
-		path: getOutput(),
-		filename:'js/bundle.js',
-		publicPath: isDevelopment ? `http://${serverIp}:8082/assets/` : ''
-	},
-	module: {
-		loaders: [
-			{
-				test: /\.js$/,
-				loader: 'babel',
-				exclude: /node_modules/,
-				query: {
-					plugins: ['transform-runtime', 'add-module-exports'],
-					presets: ['es2015', 'stage-1']
-				}
-			},
-			{
-				test: /\.css$/,
-				loader: 'style!css'
-			},
-			{
-				test: /\.scss$/,
-				loader: prod ?
-					ExtractTextPlugin.extract("style-loader", `css-loader!autoprefixer-loader?browsers=last 3 version!sass-loader?includePaths[]=dist`) :
-					`style!css!autoprefixer?browsers=last 3 version!sass?includePaths[]=dist` 
-			},
-			{ test: /\.(glsl|frag|vert)$/, loader: 'raw', exclude: /node_modules/ },
-			{ test: /\.(glsl|frag|vert)$/, loader: 'glslify', exclude: /node_modules/ },
-			{ test: /\.png$/, loader: "url-loader?limit=100000", exclude: /node_modules/  },
-			{ test: /\.jpg$/, loader: "file-loader", exclude: /node_modules/  }
-		]
-	},
-	resolve: {
-		root:__dirname + "/js",
-		fallback: path.join(__dirname, "node_modules"),
-		alias: {
-			'shaders' : __dirname + "/src/shaders",
-			'sono'    : __dirname + "/src/js/lib/sono.js"
-		}
-	},
-	plugins: prod ? [
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				drop_console: true,
-				screw_ie8: true,
-				warnings: false
-			}
-		}),
-		new ExtractTextPlugin('css/main.css')
-	] : [new webpack.optimize.OccurenceOrderPlugin()]
-};
+  entry: path.resolve(__dirname, './src/js/app.js'),
+  output: {
+    filename:'js/bundle.js',
+    path: path.resolve(__dirname, "dist/assets/" ),
+    // publicPath: `http://${serverIp}:9000/assets/`
+  },
+  mode: "development",
+  devtool: "source-map",
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'), // boolean | string | array, static file location
+    port: 9000,
+    compress: true, // enable gzip compression
+    historyApiFallback: true, // true for index.html upon 404, object for multiple paths
+    hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
+    https: false, // true for self-signed, object for cert authority
+    // noInfo: true, // only errors & warns on hot reload
+  },
+  module: {
+    rules: [
+      { test: /\.css$/, use: ['style-loader','css-loader'] },
+      { test: /\.less/, use: ['style-loader','css-loader','less-loader']},
+      { test: /\.scss$/, use: [ 'style-loader', 'css-loader'] },
+      { test: /\.(glsl|frag|vert)$/, use: 'raw-loader'},
+      { test: /\.(glsl|frag|vert)$/, use: 'glslify-loader'}
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Hot Module Replacement'
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
+}

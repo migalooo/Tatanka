@@ -1,13 +1,16 @@
 // ViewBlur.js
 
-import alfrid from './libs/alfrid.js';
+import alfrid from 'alfrid';
 let GL = alfrid.GL;
-var glslify = require("glslify");
+// var glslify = require("glslify");
+import blurVert from '../shaders/blur.vert'
+import blurFrag from '../shaders/blur.frag'
 
 class ViewBlur extends alfrid.View {
 	
 	constructor() {
-		super(glslify('../shaders/blur.vert'), glslify('../shaders/blur.frag'));
+		// super(glslify('../shaders/blur.vert'), glslify('../shaders/blur.frag'));
+		super(blurVert, blurFrag);
 	}
 
 	_init() {

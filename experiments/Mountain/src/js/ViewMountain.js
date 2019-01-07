@@ -1,15 +1,19 @@
 // ViewMountain.js
 
-import alfrid from './libs/alfrid.js';
+import alfrid from 'alfrid';
 
 let SimplexNoise = require('simplex-noise');
-let glslify      = require("glslify");
+// let glslify      = require("glslify");
 let GL           = alfrid.GL;
+
+import vert from '../shaders/pbr.vert'
+import frag from '../shaders/pbr.frag'
 
 class ViewMountain extends alfrid.View {
 	
 	constructor() {
-		super(glslify('../shaders/pbr.vert'), glslify('../shaders/pbr.frag'));
+		// super(glslify('../shaders/pbr.vert'), glslify('../shaders/pbr.frag'));
+    super(vert, frag)
 	}
 
 
@@ -86,11 +90,12 @@ class ViewMountain extends alfrid.View {
 		}
 
 
+    
 		this.mesh = new alfrid.Mesh(GL.TRIANGLES);
 		this.mesh.bufferVertex(positions);
-		this.mesh.bufferTexCoords(coords);
+		// this.mesh.bufferTexCoords(coords);
 		this.mesh.bufferNormal(normals);
-		this.mesh.bufferIndices(indices);
+		// this.mesh.bufferIndices(indices);
 	}
 
 

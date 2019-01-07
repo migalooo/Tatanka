@@ -61,8 +61,8 @@ function _init() {
 		console.error(error);
 	}).on('progress', function(p) {
 		console.log('Progress : ', p);
-		let loader = document.body.querySelector('.Loading-Bar');
-		loader.style.width = (p * 100).toFixed(2) + '%';
+		// let loader = document.body.querySelector('.Loading-Bar');
+		// loader.style.width = (p * 100).toFixed(2) + '%';
 	}).on('complete', _onImageLoaded)
 	.start();
 
